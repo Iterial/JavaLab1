@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef194d90-f6f6-4a9c-88d5-edda12cc981e" name="Changes" comment="Implement class Car and loading data from csv">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/mykytko/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/mykytko/Car.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/mykytko/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/mykytko/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,8 +60,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664544839146</updated>
-      <workItem from="1664544840998" duration="838000" />
+      <workItem from="1664544840998" duration="944000" />
     </task>
+    <task id="LOCAL-00001" summary="Implement class Car and loading data from csv">
+      <created>1664545693137</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1664545693137</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

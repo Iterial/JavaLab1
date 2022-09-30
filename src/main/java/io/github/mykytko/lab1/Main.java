@@ -1,4 +1,4 @@
-package io.github.mykytko;
+package io.github.mykytko.lab1;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package io.github.mykytko;
+package io.github.mykytko.lab1;
 
 public final class Car {
 
