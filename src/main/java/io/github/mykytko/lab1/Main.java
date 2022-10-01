@@ -10,11 +10,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.time.YearMonth;
 
 
 public class Main {
-	
-	private static ArrayList<Car> cars = new ArrayList<Car>();
+
+    private static ArrayList<Car> cars = new ArrayList<Car>();
 	
     public static void main(String[] args) {
         var url = "https://raw.githubusercontent.com/rashida048/Datasets/master/cars.csv";
@@ -30,6 +31,7 @@ public class Main {
         }
 
         var rand = new Random();
+
         for (int i = 1; i < lines.size(); i++) {
             var splits = lines.get(i).split(",");
             var brand = splits[1];
@@ -48,6 +50,23 @@ public class Main {
         var carC = taskC(yearC, priceC);
         for (var car : carC) {
         	System.out.println(car.toString() + '\n');
+        }
+
+        ArrayList<Car> carsWithBrand = taskA("tesla");
+        ArrayList<Car> carsWithModelYear = taskB("MODEL S (60 kWh battery)", 8);
+
+        System.out.println("Cars with a specific brand:\n");
+
+        for (var car : carsWithBrand) {
+          System.out.println(car);
+          System.out.println();
+        }
+
+        System.out.println("\nCars with a specific model that were used for n or more years:\n");
+
+        for (var car : carsWithModelYear) {
+          System.out.println(car);
+          System.out.println();
         }
     }
 
@@ -68,12 +87,32 @@ public class Main {
         return number.toString();
     }
 
-    private static ArrayList<Car> taskA() {
-        return null;
+    private static ArrayList<Car> taskA(String brand) {
+        ArrayList<Car> carsList = new ArrayList<Car>();
+
+        for (Car car : cars) {
+          if (car.getBrand().equalsIgnoreCase(brand)) {
+            carsList.add(car);
+          }
+        }
+
+        return carsList;
     }
 
-    private static ArrayList<Car> taskB() {
-        return null;
+    private static ArrayList<Car> taskB(String model, int usedFor) {
+      ArrayList<Car> carsList = new ArrayList<Car>();
+      int currentYear = YearMonth.now().getYear();
+
+      for (Car car : cars) {
+        if (
+          car.getModel().equalsIgnoreCase(model)
+          && (currentYear - car.getYear()) > usedFor
+        ) {
+          carsList.add(car);
+        }
+      }
+
+      return carsList;
     }
 
     private static ArrayList<Car> taskC(Integer year, Integer price) {
@@ -100,5 +139,5 @@ public class Main {
         fileOutputStream.close();
         readableByteChannel.close();
     }
-
+    
 }
