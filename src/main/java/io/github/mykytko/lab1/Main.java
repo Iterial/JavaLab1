@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Random;
 import java.time.YearMonth;
 
+
 public class Main {
+
     private static ArrayList<Car> cars = new ArrayList<Car>();
-
+	
     public static void main(String[] args) {
-
         var url = "https://raw.githubusercontent.com/rashida048/Datasets/master/cars.csv";
         var fileName = "cars.csv";
 
@@ -37,16 +38,18 @@ public class Main {
             var model = splits[2];
             var year = Integer.parseInt(splits[0]);
             var color = rand.nextInt(0xffffff + 1);
-            var price = 10000 + rand.nextInt(400) * 100 - rand.nextInt(1);
-            var registrationNumber = generateRegistrationNumber();
+            var price = 10000 + rand.nextInt(400) * 100 - rand.nextInt(2);
+            var registrationNumber = generateRegistrationNumber(rand);
 
             var car = new Car(brand, model, year, color, price, registrationNumber);
             cars.add(car);
         }
-
-        for (var car : cars) {
-            System.out.println(car);
-            System.out.println();
+        
+        Integer yearC = 2012;
+        Integer priceC = 10000;
+        var carC = taskC(yearC, priceC);
+        for (var car : carC) {
+        	System.out.println(car.toString() + '\n');
         }
 
         ArrayList<Car> carsWithBrand = taskA("tesla");
@@ -67,8 +70,21 @@ public class Main {
         }
     }
 
-    private static String generateRegistrationNumber() {
-        return "";
+    private static String generateRegistrationNumber(Random rand) {
+    	var number = new StringBuilder();
+    	Integer length = 8;
+    	
+    	for (int i = 0; i < length; i++) {
+    		char symbol = (char)((rand.nextInt(10) + 48) * rand.nextInt(2));
+    		
+    		if (symbol == 0) {
+    			symbol = (char)(rand.nextInt(26) + 65);
+    		}
+    		
+    		number.append(symbol);
+    	}
+    	
+        return number.toString();
     }
 
     private static ArrayList<Car> taskA(String brand) {
@@ -99,8 +115,18 @@ public class Main {
       return carsList;
     }
 
-    private static ArrayList<Car> taskC(ArrayList<Car> cars) {
-        return null;
+    private static ArrayList<Car> taskC(Integer year, Integer price) {
+    	var result = new ArrayList<Car>();
+    	
+    	for (var car : cars) {
+    		if (car.getYear().equals(year)) {
+    			if (car.getPrice().intValue() > price.intValue()) {
+    				result.add(car);
+    			}
+    		}
+    	}
+    	
+        return result;
     }
 
     private static void downloadData(String url, String fileName) throws IOException {
@@ -113,4 +139,5 @@ public class Main {
         fileOutputStream.close();
         readableByteChannel.close();
     }
+    
 }

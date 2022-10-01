@@ -12,11 +12,11 @@ public final class Car {
     private final Integer price;
     private final String registrationNumber;
 
-    public Car(String brand, String model, int year,
-               int color, int price, String registrationNumber) {
+    public Car(String brand, String model, Integer year,
+    		Integer color, Integer price, String registrationNumber) {
 
+    	counter++;
         id = counter;
-        counter++;
 
         this.brand = brand;
         this.model = model;
@@ -35,16 +35,18 @@ public final class Car {
         builder.append(lineSeparator);
         builder.append("Model: ").append(model);
         builder.append(lineSeparator);
-        builder.append("Year: ").append(year);
+        builder.append("Year: ").append(Integer.toString(year));
         builder.append(lineSeparator);
         builder.append("Color: #").append(Integer.toHexString(color));
+        builder.append(lineSeparator);
+        builder.append("Price: ").append(Integer.toString(price));
         builder.append(lineSeparator);
         builder.append("Registration number: ").append(registrationNumber);
 
         return builder.toString();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -56,15 +58,15 @@ public final class Car {
         return model;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public int getColor() {
+    public Integer getColor() {
         return color;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
