@@ -45,34 +45,42 @@ public class Main {
             cars.add(car);
         }
         
-        Integer yearC = 2012;
-        Integer priceC = 10000;
-        var carC = taskC(yearC, priceC);
-        for (var car : carC) {
+        //taskA
+        String brandA = "tesla";
+        var carsA = taskA(brandA);
+        
+        System.out.println("Cars with a specific brand(" + brandA + "):\n");
+
+        for (var car : carsA) {
+          System.out.println(car.toString() + '\n');
+        }
+        
+        //taskB
+        String modelB = "MODEL S (60 kWh battery)";
+        int yearsB = 8;
+        var carsB = taskB(modelB, yearsB);
+        
+        System.out.println("Cars with a specific model(" + modelB + ") that were used for " + yearsB + " or more years:\n");
+
+        for (var car : carsB) {
+          System.out.println(car.toString() + '\n');
+        }
+        
+        //taskC
+        int yearC = 2012;
+        int priceC = 10000;
+        var carsC = taskC(yearC, priceC);
+        
+        System.out.println("Cars with a specific year of manufacture(" + yearC + ") that cost " + priceC+ "$ or more:\n");
+        
+        for (var car : carsC) {
         	System.out.println(car.toString() + '\n');
-        }
-
-        ArrayList<Car> carsWithBrand = taskA("tesla");
-        ArrayList<Car> carsWithModelYear = taskB("MODEL S (60 kWh battery)", 8);
-
-        System.out.println("Cars with a specific brand:\n");
-
-        for (var car : carsWithBrand) {
-          System.out.println(car);
-          System.out.println();
-        }
-
-        System.out.println("\nCars with a specific model that were used for n or more years:\n");
-
-        for (var car : carsWithModelYear) {
-          System.out.println(car);
-          System.out.println();
         }
     }
 
     private static String generateRegistrationNumber(Random rand) {
     	var number = new StringBuilder();
-    	Integer length = 8;
+    	int length = 8;
     	
     	for (int i = 0; i < length; i++) {
     		char symbol = (char)((rand.nextInt(10) + 48) * rand.nextInt(2));
@@ -88,9 +96,9 @@ public class Main {
     }
 
     private static ArrayList<Car> taskA(String brand) {
-        ArrayList<Car> carsList = new ArrayList<Car>();
+        var carsList = new ArrayList<Car>();
 
-        for (Car car : cars) {
+        for (var car : cars) {
           if (car.getBrand().equalsIgnoreCase(brand)) {
             carsList.add(car);
           }
@@ -100,13 +108,13 @@ public class Main {
     }
 
     private static ArrayList<Car> taskB(String model, int usedFor) {
-      ArrayList<Car> carsList = new ArrayList<Car>();
+      var carsList = new ArrayList<Car>();
       int currentYear = YearMonth.now().getYear();
 
-      for (Car car : cars) {
+      for (var car : cars) {
         if (
           car.getModel().equalsIgnoreCase(model)
-          && (currentYear - car.getYear()) > usedFor
+          && (currentYear - car.getYear()) >= usedFor
         ) {
           carsList.add(car);
         }
@@ -115,18 +123,19 @@ public class Main {
       return carsList;
     }
 
-    private static ArrayList<Car> taskC(Integer year, Integer price) {
-    	var result = new ArrayList<Car>();
+    private static ArrayList<Car> taskC(int year, int price) {
+    	var carslist = new ArrayList<Car>();
     	
     	for (var car : cars) {
-    		if (car.getYear().equals(year)) {
-    			if (car.getPrice().intValue() > price.intValue()) {
-    				result.add(car);
-    			}
-    		}
+    	  if (
+    	    car.getYear().equals(year)
+    		&& car.getPrice() >= price
+    	  ) {
+    		carslist.add(car);
+    	  }
     	}
     	
-        return result;
+        return carslist;
     }
 
     private static void downloadData(String url, String fileName) throws IOException {
