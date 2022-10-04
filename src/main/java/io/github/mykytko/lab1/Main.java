@@ -44,7 +44,8 @@ public class Main {
             var car = new Car(brand, model, year, color, price, registrationNumber);
             cars.add(car);
         }
-
+        
+        //taskA
         String brandA = "tesla";
         var carsA = taskA(brandA);
         
@@ -53,7 +54,8 @@ public class Main {
         for (var car : carsA) {
           System.out.println(car.toString() + '\n');
         }
-
+        
+        //taskB
         String modelB = "MODEL S (60 kWh battery)";
         int yearsB = 8;
         var carsB = taskB(modelB, yearsB);
@@ -64,6 +66,7 @@ public class Main {
           System.out.println(car.toString() + '\n');
         }
         
+        //taskC
         int yearC = 2012;
         int priceC = 10000;
         var carsC = taskC(yearC, priceC);
@@ -124,12 +127,12 @@ public class Main {
     	var carslist = new ArrayList<Car>();
     	
     	for (var car : cars) {
-    		if (
-    		  car.getYear().equals(year)
-    		  && car.getPrice() > price
-    		) {
-    		  carslist.add(car);
-    		}
+    	  if (
+    	    car.getYear().equals(year)
+    		&& car.getPrice() >= price
+    	  ) {
+    		carslist.add(car);
+    	  }
     	}
     	
         return carslist;
